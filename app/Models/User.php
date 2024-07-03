@@ -5,9 +5,11 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Ramsey\Collection\Collection;
 
 /**
  * @property int $id
@@ -16,6 +18,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string $password
  *
  * @property Role $role
+ * @property Collection $carBooks
  */
 class User extends Authenticatable
 {
@@ -53,6 +56,11 @@ class User extends Authenticatable
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    public function carBooks(): HasMany
+    {
+        return $this->hasMany(CarBook::class, 'user_id');
     }
 
     public function makeToken(): string

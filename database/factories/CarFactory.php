@@ -20,11 +20,8 @@ class CarFactory extends Factory
     {
         return [
             'model' => fake()->name,
-            'user_id' => null,
             'driver_id' => Driver::query()->inRandomOrder()->first()->id,
             'comfort_id' => Comfort::query()->inRandomOrder()->first()->id,
-            'usage_start_time' => null,
-            'usage_end_time' => null,
         ];
     }
 }

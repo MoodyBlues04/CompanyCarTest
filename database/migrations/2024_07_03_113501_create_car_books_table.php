@@ -11,18 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cars', function (Blueprint $table) {
+        Schema::create('car_books', function (Blueprint $table) {
             $table->id();
-            $table->string('model');
-            $table->foreignId('comfort_id');
-            $table->foreign('comfort_id')
+            $table->dateTime('start_time');
+            $table->dateTime('end_time');
+            $table->foreignId('user_id');
+            $table->foreign('user_id')
                 ->references('id')
-                ->on('comforts')
+                ->on('users')
                 ->onDelete('cascade');
-            $table->foreignId('driver_id');
-            $table->foreign('driver_id')
+            $table->foreignId('car_id');
+            $table->foreign('car_id')
                 ->references('id')
-                ->on('drivers')
+                ->on('cars')
                 ->onDelete('cascade');
             $table->timestamps();
         });
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cars');
+        Schema::dropIfExists('car_books');
     }
 };
