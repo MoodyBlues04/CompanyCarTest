@@ -33,8 +33,8 @@ class Role extends Model
         return $this->belongsToMany(
             Comfort::class,
             'role_has_comfort',
+            'role_id',
             'comfort_id',
-            'role_id'
         );
     }
 }
