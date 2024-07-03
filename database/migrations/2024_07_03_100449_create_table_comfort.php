@@ -11,14 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('comforts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('password');
+            $table->integer('value');
+            $table->timestamps();
+        });
+        Schema::create('role_has_comfort', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('role_id');
             $table->foreign('role_id')
                 ->references('id')
                 ->on('roles')
+                ->onDelete('cascade');
+
+            $table->foreignId('comfort_id');
+            $table->foreign('comfort_id')
+                ->references('id')
+                ->on('comforts')
                 ->onDelete('cascade');
             $table->timestamps();
         });
@@ -29,6 +38,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('role_has_comfort');
+        Schema::dropIfExists('comforts');
     }
 };
