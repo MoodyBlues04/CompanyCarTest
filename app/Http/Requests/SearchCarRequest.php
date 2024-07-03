@@ -22,8 +22,10 @@ class SearchCarRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'start_time' => '',
-            'end_time' => '',
+            'start_time' => 'required|date_format:Y-m-d H:i:s',
+            'end_time' => 'required|date_format:Y-m-d H:i:s',
+            'model' => 'nullable|string',
+            'comfort' => 'nullable|int',
         ];
     }
 }

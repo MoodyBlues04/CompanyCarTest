@@ -19,6 +19,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
     Route::post('/login', AuthController::class . '@login')->name('login');
 });
 
+
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/car/search', CarController::class . '@search')
         ->name('car.search');
