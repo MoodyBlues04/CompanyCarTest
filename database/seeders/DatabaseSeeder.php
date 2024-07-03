@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             ComfortSeeder::class,
             RoleSeeder::class,
             CarSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }
