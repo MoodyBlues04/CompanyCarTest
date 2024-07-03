@@ -10,12 +10,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property int $driver_id
  * @property int $comfort_id
+ * @property ?int $user_id id of user who using this car now
  * @property string $model
  * @property ?string $usage_start_time
  * @property ?string $usage_end_time
- * @property bool $is_in_use
  *
  * @property Driver $driver
+ * @property ?User $user
  * @property Comfort $comfort
  */
 class Car extends Model
@@ -27,7 +28,7 @@ class Car extends Model
         'comfort_id',
         'usage_start_time',
         'usage_end_time',
-        'is_in_use',
+        'user_id',
         'driver_id',
     ];
 
@@ -44,5 +45,10 @@ class Car extends Model
     public function comfort(): BelongsTo
     {
         return $this->belongsTo(Comfort::class, 'comfort_id');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

@@ -16,7 +16,12 @@ return new class extends Migration
             $table->string('model');
             $table->dateTime('usage_start_time')->nullable();
             $table->dateTime('usage_end_time')->nullable();
-            $table->boolean('is_in_use')->default(false);
+
+            $table->foreignId('user_id')->nullable();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
             $table->foreignId('comfort_id');
             $table->foreign('comfort_id')
                 ->references('id')
