@@ -42,4 +42,12 @@ class Car extends Model
     {
         return $this->hasMany(CarBook::class, 'car_id');
     }
+
+    public function canBook(string $startTime, string $endTime): bool
+    {
+        return !$this->carBooks()
+            ->whereBetween('start_time', [$startTime, $endTime])
+            ->orWhereBetween('end_time', [$startTime, $endTime])
+            ->exists();
+    }
 }

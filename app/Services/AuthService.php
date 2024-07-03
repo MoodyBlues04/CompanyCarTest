@@ -10,7 +10,7 @@ class AuthService
 {
     public function login(LoginRequest $request): User
     {
-        if(!Auth::guard('api')->attempt($request->only(['name', 'password']))){
+        if(!Auth::attempt($request->only(['name', 'password']))){
             throw new \InvalidArgumentException('Invalid name or password');
         }
 

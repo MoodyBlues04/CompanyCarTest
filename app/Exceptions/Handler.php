@@ -27,4 +27,13 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $th): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+    {
+        if ($request->expectsJson()) {
+            return response()->json(['ok' => false, 'data' => ['message' => $th->getMessage()]], 500);
+        }
+
+        return parent::render($request, $th);
+    }
 }

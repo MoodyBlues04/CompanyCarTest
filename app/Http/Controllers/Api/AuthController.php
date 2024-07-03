@@ -19,20 +19,14 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request): \Illuminate\Http\JsonResponse
     {
-        try {
-            $user = $this->authService->login($request);
+        $user = $this->authService->login($request);
 
-            return response()->json([
-                'status' => true,
-                'message' => 'User Logged In Successfully',
+        return response()->json([
+            'ok' => true,
+            'data' => [
+                'message' => 'logged in',
                 'token' => $user->makeToken(),
-            ]);
-
-        } catch (\Exception $e) {
-            return response()->json([
-                'status' => false,
-                'message' => $e->getMessage()
-            ], 500);
-        }
+            ],
+        ]);
     }
 }
