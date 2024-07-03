@@ -11,3 +11,6 @@ It's test task
 5. run ```php artisan migrate``` to set up db structure
 6. ```php artisan db:seed``` to seed test data
 7. enjoy
+
+## Tips
++ In ``` db_schema.mwb ``` you can find schema of db for workbench
